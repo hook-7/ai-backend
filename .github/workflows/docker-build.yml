@@ -13,6 +13,20 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Specify your Node.js version here
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies with pnpm
+        run: pnpm install
+
+      - name: Build frontend with pnpm
+        run: pnpm run build
+
       - name: Calculate build version
         id: versioning
         run: echo "BUILD_VERSION=$(git rev-list --count HEAD)" >> $GITHUB_ENV
