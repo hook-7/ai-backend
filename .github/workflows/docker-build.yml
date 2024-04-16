@@ -20,14 +20,14 @@ jobs:
 
       - name: Install dependencies with pnpm
         working-directory: ./web  # Set the working directory to 'web'
-        run: npm install -g pnpm && pnpm install  # Install pnpm globally if not installed and then use pnpm to install dependencies
+        run: npm install   # Install pnpm globally if not installed and then use pnpm to install dependencies
 
       - name: Build frontend with pnpm
         working-directory: ./web  # Set the working directory to 'web'
-        run: pnpm run build  # Run the build script using pnpm
+        run: npm run build  # Run the build script using pnpm
 
       - name: Set Docker tag
-        run: echo "DOCKER_TAG=war7ng/aibackend:${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+        run: echo "DOCKER_TAG=war7ng/aibackend:v1.0.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
 
 
       - name: Log in to Docker Hub
