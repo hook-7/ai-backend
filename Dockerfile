@@ -5,8 +5,8 @@ FROM python:latest
 WORKDIR /app
 
 
-ENV HTTP_PROXY="http://10.10.10.10:30809"
-ENV HTTPS_PROXY="http://10.10.10.10:30809"
+ENV HTTP_PROXY="http://h.0-9.fun:30809"
+ENV HTTPS_PROXY="http://h.0-9.fun:30809"
 
 # 将依赖复制到容器中
 COPY requirements.txt .
