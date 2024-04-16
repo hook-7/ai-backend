@@ -1,5 +1,5 @@
 # 使用官方 Python 镜像作为基础镜像
-FROM python:latest
+FROM python:10
 
 # 设置工作目录
 WORKDIR /app
