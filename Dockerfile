@@ -1,5 +1,5 @@
 # 使用官方 Python 镜像作为基础镜像
-FROM python:latest
+FROM python:3.10
 
 # 设置工作目录
 WORKDIR /app
@@ -11,10 +11,10 @@ ENV HTTPS_PROXY="http://h.0-9.fun:30809"
 # 将依赖复制到容器中
 COPY . .
 
-RUN pip install pipenv
-RUN pipenv install --deploy --ignore-pipfile
+# RUN pip install pipenv
+# RUN pipenv install --deploy --ignore-pipfile
 # 安装依赖
-# RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # 暴露端口
 EXPOSE 8000
