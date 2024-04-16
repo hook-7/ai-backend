@@ -18,14 +18,11 @@ jobs:
         with:
           node-version: '18'  # Specify your Node.js version here
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies with pnpm
-        run: pnpm install
+        run: npm install
 
       - name: Build frontend with pnpm
-        run: pnpm run build
+        run: npm run build
 
       - name: Calculate build version
         id: versioning
