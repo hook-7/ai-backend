@@ -11,9 +11,6 @@ ENV HTTPS_PROXY="http://h.0-9.fun:30809"
 # 将依赖复制到容器中
 COPY . .
 
-# RUN pip install pipenv
-# RUN pipenv install --deploy --ignore-pipfile
-# 安装依赖
 RUN pip install -r requirements.txt
 
 # 暴露端口

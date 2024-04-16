@@ -26,9 +26,9 @@ jobs:
         working-directory: ./web  # Set the working directory to 'web'
         run: pnpm run build  # Run the build script using pnpm
 
-      - name: Calculate build version
-        id: versioning
-        run: echo "::set-output name=build_version::$(git rev-list --count HEAD)"
+      - name: Set Docker tag
+        run: echo "DOCKER_TAG=war7ng/aibackend:${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -40,6 +40,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: war7ng/aibackend:${{ steps.versioning.outputs.build_version }}
+          tags: ${{ env.DOCKER_TAG }}
           context: .
           file: ./Dockerfile
