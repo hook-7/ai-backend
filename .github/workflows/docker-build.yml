@@ -19,10 +19,12 @@ jobs:
           node-version: '18'  # Specify your Node.js version here
 
       - name: Install dependencies with pnpm
-        run: npm install
+        working-directory: ./web  # Set the working directory to 'web'
+        run: npm install -g pnpm && pnpm install  # Install pnpm globally if not installed and then use pnpm to install dependencies
 
       - name: Build frontend with pnpm
-        run: npm run build
+        working-directory: ./web  # Set the working directory to 'web'
+        run: pnpm run build  # Run the build script using pnpm
 
       - name: Calculate build version
         id: versioning
