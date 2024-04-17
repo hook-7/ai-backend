@@ -16,15 +16,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Specify your Node.js version here
+          node-version: '18' 
 
       - name: Install dependencies with pnpm
-        working-directory: ./web  # Set the working directory to 'web'
-        run: npm install   # Install pnpm globally if not installed and then use pnpm to install dependencies
+        working-directory: ./web  
+        run: npm install   
 
       - name: Build frontend with pnpm
-        working-directory: ./web  # Set the working directory to 'web'
-        run: npm run build  # Run the build script using pnpm
+        working-directory: ./web  
+        run: npm run build  
 
       - name: Set Docker tag
         run: echo "DOCKER_TAG=war7ng/aibackend:v1.0.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
