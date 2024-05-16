@@ -4,8 +4,6 @@ FROM python:3.10
 # 设置工作目录
 WORKDIR /app
 
-
-
 COPY . .
 
 RUN pip install -r requirements.txt
