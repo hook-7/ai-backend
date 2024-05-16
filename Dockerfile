@@ -4,10 +4,6 @@ FROM python:3.10
 # 设置工作目录
 WORKDIR /app
 
-
-ENV HTTP_PROXY="http://h.0-9.fun:30809"
-ENV HTTPS_PROXY="http://h.0-9.fun:30809"
-
 # 将依赖复制到容器中
 COPY . .
 
