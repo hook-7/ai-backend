@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from fastapi.responses import RedirectResponse
 load_dotenv()
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -14,6 +15,10 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 app = FastAPI()
 
 app.mount("/web", StaticFiles(directory="web/dist", html=True), name="web")
+
+@app.get("/")
+def read_root():
+    return RedirectResponse(url='/web')
 
 @app.post("/get_ai_chat_response")
 async def get_ai_chat_response(messageData: schemas.MessageData):
