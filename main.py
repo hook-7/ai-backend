@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
-from fastapi.responses import RedirectResponse
 load_dotenv()
+
+from fastapi.responses import RedirectResponse
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 import crud, schemas
