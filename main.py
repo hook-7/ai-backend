@@ -9,7 +9,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 
 
-# docker run --name test -d -p 8000:8000 -v $(pwd)/.env:/app/.env war7ng/aibackend:v1.0.19
+# docker run --name test -d -p 8000:8000 -v $(pwd)/.env:/app/.env --restart unless-stopped war7ng/aibackend:v1.0.21
+
 # uvicorn main:app --reload --host "0.0.0.0" --port 8001
 
 app = FastAPI()
