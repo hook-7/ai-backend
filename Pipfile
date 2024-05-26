@@ -4,8 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+fastapi = "*"
+uvicorn = "*"
+pymongo = "*"
+motor = "*"
+pydantic = "*"
+redis = "*"
+requests = "*"
+transformers = "*"
+openai = "*"
+python-dotenv = "*"
+tensorflow = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"
