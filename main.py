@@ -16,7 +16,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 app = FastAPI()
 
-app.mount("/web", StaticFiles(directory="web/dist", html=True), name="web")
+app.mount("/web", StaticFiles(directory="web/dist", html=True, check_dir=False), name="web")
 
 @app.get("/")
 def read_root():
@@ -25,9 +25,9 @@ def read_root():
 @app.post("/get_ai_chat_response")
 async def get_ai_chat_response(messageData: schemas.MessageData):
     if not can_send_daily_message(messageData.user_name):
-        raise HTTPException(status_code=401, detail="Exceeded daily message limit.")
+        raise HTTPException(status_code=429, detail="Exceeded daily message limit.")
     if not can_send_30s_message(messageData.user_name):
-        raise HTTPException(status_code=401, detail="Exceeded message rate limit (3 messages per 30 seconds).")
+        raise HTTPException(status_code=429, detail="Exceeded message rate limit (3 messages per 30 seconds).")
     return  crud.send_ai_chat_msg(messageData)
 
 @app.get("/get_user_chat_history/{username}/{last_n}")

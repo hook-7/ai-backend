@@ -20,9 +20,9 @@ def send_ai_chat_msg(input_data: MessageData):
 
     # Prepare messages for the API, ensuring only expected fields are included
     api_messages = [{
-        "role": msg["role"],
+        "role": ("user" if msg.get("msgType") == "sent" else "assistant"),
         "content": msg["content"]
-    } for msg in json_compatible_content if "role" in msg and "content" in msg]
+    } for msg in json_compatible_content if "content" in msg]
 
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -73,11 +73,14 @@ def reduce_tokens_from_middle(data: List[Dict], max_tokens: int) -> List[Dict]:
     :return: 调整后的数据列表。
     """
   # tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
-    tokenizer = AutoTokenizer.from_pretrained("./.tokenizer/")
+    try:
+        tokenizer = AutoTokenizer.from_pretrained("./.tokenizer/")
+    except Exception:
+        tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
     # tokenizer.save_pretrained("./.tokenizer/")
 
     # 计算总 token 数量
-    total_tokens = sum(len(tokenizer.tokenize(item["content"])) for item in data)
+    total_tokens = sum(len(tokenizer.tokenize(item["content"])) for item in data if "content" in item)
 
     if total_tokens <= max_tokens:
         return data  # 如果不超过限制，直接返回原数据
