@@ -71,7 +71,8 @@ def get_today_send_msg_count(user_id):
     max_messages_per_day = 20
     if not current_count:
         return 0
-    if int(current_count)>max_messages_per_day:
+    current_count = int(current_count)
+    if current_count > max_messages_per_day:
         return max_messages_per_day
     return current_count
 
